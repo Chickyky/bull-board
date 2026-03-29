@@ -1,5 +1,5 @@
 {
-  "name": "@bull-board/ui",
+  "name": "@chickyky/bull-board-ui",
   "version": "6.20.6",
   "description": "A Dashboard UI built on top of bull or bullmq.",
   "keywords": [
