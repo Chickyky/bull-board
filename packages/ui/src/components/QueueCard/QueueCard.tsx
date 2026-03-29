@@ -1,4 +1,5 @@
 import type { AppQueue } from '@bull-board/api/typings/app';
+import cn from 'clsx';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
@@ -15,13 +16,15 @@ export const QueueCard = ({ queue }: IQueueCardProps) => {
   const { t } = useTranslation();
 
   return (
-    <Card className={s.queueCard}>
-      <div className={s.header}>
-        <NavLink to={links.queuePage(queue.name)} className={s.link}>
+    <Card className={cn(s.queueCard, 'flex flex-col gap-3 p-4 hover:shadow-lg transition-shadow duration-200')}>
+      <div className={cn(s.header, 'flex items-center justify-between gap-2')}>
+        <NavLink to={links.queuePage(queue.name)} className={cn(s.link, 'text-lg font-medium truncate flex-1')}>
           {queue.displayName}
         </NavLink>
         {queue.isPaused && (
-          <span className={s.pausedBadge}>[ {t('MENU.PAUSED')} ]</span>
+          <span className={cn(s.pausedBadge, 'text-xs uppercase tracking-wider font-semibold opacity-70')}>
+            [ {t('MENU.PAUSED')} ]
+          </span>
         )}
       </div>
       <QueueStats queue={queue} />

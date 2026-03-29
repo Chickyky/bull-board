@@ -1,4 +1,5 @@
 import type { Status } from '@bull-board/api/typings/app';
+import cn from 'clsx';
 import React from 'react';
 import OverviewDropDownActions from '../../components/OverviewDropDownActions/OverviewDropDownActions';
 import { QueueCard } from '../../components/QueueCard/QueueCard';
@@ -26,8 +27,8 @@ export const OverviewPage = () => {
   } = useSortQueues(filteredQueues);
 
   return (
-    <section>
-      <div className={s.header}>
+    <section className="px-4 py-6 md:px-8">
+      <div className={cn(s.header, 'flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4')}>
         <StatusLegend />
         <OverviewDropDownActions
           actions={actions}
@@ -37,9 +38,9 @@ export const OverviewPage = () => {
           sortDirection={sortDirection}
         />
       </div>
-      <ul className={s.overview}>
+      <ul className={cn(s.overview, 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6')}>
         {queuesToView.map((queue) => (
-          <li key={queue.name}>
+          <li key={queue.name} className="w-full">
             <QueueCard queue={queue} />
           </li>
         ))}

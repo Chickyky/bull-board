@@ -1,5 +1,6 @@
 import { STATUSES } from '@bull-board/api/constants/statuses';
 import type { AppJob } from '@bull-board/api/typings/app';
+import cn from 'clsx';
 import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { JobCard } from '../../components/JobCard/JobCard';
@@ -54,7 +55,7 @@ export const QueuePage = () => {
   const isLatest = status === STATUSES.latest;
 
   return (
-    <section>
+    <section className={cn('px-4 py-6 md:px-8')}>
       <StickyHeader
         actions={
           <>

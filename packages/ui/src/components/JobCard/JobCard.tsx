@@ -3,6 +3,7 @@ import type { AppJob, Status } from '@bull-board/api/typings/app';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import cn from 'clsx';
 import { useMobileQuery } from '../../hooks/useMobileQuery';
 import { Card } from '../Card/Card';
 import { ChevronDown } from '../Icons/ChevronDown';
@@ -52,7 +53,7 @@ export const JobCard = ({
   const isExpandedCard = !jobUrl || localCollapse || !collapseJob;
   const showCollapseExpandBtn = collapseJob && jobUrl;
   const JobTitle = (
-    <h4>
+    <h4 className="text-base sm:text-lg font-medium truncate py-1">
       {/^\d+$/.test(`${job.id}`) ? '#' : ''}
       {job.id}
     </h4>
@@ -61,10 +62,10 @@ export const JobCard = ({
   return (
     <Collapsible.Root asChild={true} open={isExpandedCard}>
       <Card className={s.card}>
-        <div className={s.header}>
-          <div className={s.titleWithLink}>
+        <div className={cn(s.header, 'flex items-center justify-between gap-3 border-b border-gray-100 pb-3 mb-4')}>
+          <div className={cn(s.titleWithLink, 'flex-1 min-w-0')}>
             {jobUrl ? (
-              <Link className={s.jobLink} to={jobUrl}>
+              <Link className={cn(s.jobLink, 'block hover:text-blue-600 transition-colors')} to={jobUrl}>
                 {JobTitle}
               </Link>
             ) : (
@@ -73,7 +74,7 @@ export const JobCard = ({
 
             {job.externalUrl && (
               <a
-                className={s.externalLink}
+                className={cn(s.externalLink, 'shrink-0 p-1.5 rounded-md hover:bg-gray-100 transition-colors')}
                 href={job.externalUrl.href}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -84,7 +85,10 @@ export const JobCard = ({
           </div>
 
           {showCollapseExpandBtn && (
-            <Button className={s.collapseBtn} onClick={() => setLocalCollapse(!isExpandedCard)}>
+            <Button
+              className={cn(s.collapseBtn, 'shrink-0 p-2 rounded-lg hover:bg-gray-100')}
+              onClick={() => setLocalCollapse(!isExpandedCard)}
+            >
               {isExpandedCard ? <ChevronUp /> : <ChevronDown />}
             </Button>
           )}
