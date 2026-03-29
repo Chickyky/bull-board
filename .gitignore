@@ -1,6 +1,5 @@
 node_modules/
 .DS_Store
-dist
 yarn-error.log
 .yarn/install-state.gz
 *.rdb
@@ -18,3 +17,14 @@ example.local.ts
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+packages/api/dist/
+packages/bun/dist/
+packages/elysia/dist/
+packages/express/dist/
+packages/fastify/dist/
+packages/h3/dist/
+packages/hapi/dist/
+packages/hono/dist/
+packages/koa/dist/
+packages/nestjs/dist/
